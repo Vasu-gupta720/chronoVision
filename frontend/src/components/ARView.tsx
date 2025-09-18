@@ -55,7 +55,7 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
 
   return (
-    <section className="min-h-screen bg-card relative z-10 shadow-2xl pt-20">
+    <section className="min-h-screen bg-card relative z-10 shadow-2xl pt-0">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Back Button */}
         <Button
