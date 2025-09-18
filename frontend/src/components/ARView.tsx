@@ -1,11 +1,22 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Smartphone, QrCode, Eye, Zap, Sparkles, ArrowLeft, MapPin, Clock, Calendar, Users, Crown } from 'lucide-react';
-import { getARSites, type HeritageSite } from '../data/heritage-sites';
-import { HistoryModal } from './HistoryModal';
-import { Skeleton } from './ui/skeleton';
+import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import {
+  Smartphone,
+  QrCode,
+  Eye,
+  Zap,
+  Sparkles,
+  ArrowLeft,
+  MapPin,
+  Clock,
+  Crown,
+} from "lucide-react";
+import { getARSites, type HeritageSite } from "../data/heritage-sites";
+import { HistoryModal } from "./HistoryModal";
+import { Skeleton } from "./ui/skeleton";
+import { QRCodeSVG } from "qrcode.react";
 
 interface ARViewProps {
   onBack: () => void;
@@ -27,7 +38,9 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
         // This logic now runs after the temples have been fetched
         if (selectedSiteId) {
           const siteIdNumber = parseInt(selectedSiteId, 10);
-          const index = arSites.findIndex(temple => temple.id === siteIdNumber);
+          const index = arSites.findIndex(
+            (temple) => temple.id === siteIdNumber
+          );
           setSelectedTemple(index !== -1 ? index : null);
         }
       } catch (error) {
@@ -41,20 +54,13 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
   }, [selectedSiteId]);
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
 
-  const generateQRCode = (url: string = '') => {
-    // In a real implementation, you'd use a QR code library
-    // For now, we'll create a visual pattern that represents each temple uniquely
-    const pattern = url.split('').map((char, index) => char.charCodeAt(0) + index).slice(0, 64);
-    return pattern;
-  };
-  
   return (
     <section className="min-h-screen bg-card relative z-10 shadow-2xl pt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Back Button */}
-        <Button 
+        <Button
           onClick={onBack}
-          variant="ghost" 
+          variant="ghost"
           className="mb-8 text-primary hover:text-primary hover:bg-primary/10"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -68,8 +74,9 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
             <h1 className="gradient-text">AR Heritage Experience</h1>
           </div>
           <p className="text-muted-foreground max-w-3xl mx-auto text-lg">
-            Immerse yourself in the sacred beauty of ancient Indian heritage sites through cutting-edge 
-            Augmented Reality technology. Scan the QR code with your mobile device to begin your spiritual journey.
+            Immerse yourself in the sacred beauty of ancient Indian heritage
+            sites through cutting-edge Augmented Reality technology. Scan the QR
+            code with your mobile device to begin your spiritual journey.
           </p>
         </div>
 
@@ -86,39 +93,35 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
                       <h3>{temples[selectedTemple].title} AR</h3>
                     </div>
                     <p className="text-muted-foreground">
-                      Scan this QR code to experience {temples[selectedTemple].title} in AR
+                      Scan this QR code to experience{" "}
+                      {temples[selectedTemple].title} in AR
                     </p>
                   </CardHeader>
-                  
+
                   <CardContent className="flex flex-col items-center space-y-6">
                     {/* Dynamic QR Code */}
                     <div className="relative">
                       <div className="w-64 h-64 bg-white rounded-lg p-4 shadow-2xl">
                         <div className="w-full h-full bg-black relative overflow-hidden rounded">
                           {/* Temple-specific QR code pattern */}
-                          <div className="absolute inset-0 grid grid-cols-8 gap-1 p-2">
-                            {generateQRCode(temples[selectedTemple].arUrl).map((value, i) => (
-                              <div 
-                                key={i} 
-                                className={`${
-                                  value % 2 === 0 ? 'bg-black' : 'bg-white'
-                                } rounded-sm`}
-                              />
-                            ))}
-                          </div>
-                          {/* Corner markers */}
-                          <div className="absolute top-2 left-2 w-8 h-8 border-4 border-black bg-white"></div>
-                          <div className="absolute top-2 right-2 w-8 h-8 border-4 border-black bg-white"></div>
-                          <div className="absolute bottom-2 left-2 w-8 h-8 border-4 border-black bg-white"></div>
+                          <QRCodeSVG
+                            value={temples[selectedTemple].arUrl || ""}
+                            className="w-full h-full"
+                            bgColor="#ffffff"
+                            fgColor="#000000"
+                          />
                         </div>
                       </div>
-                      
+
                       {/* Animated scanning indicator */}
                       <div className="absolute -inset-4 border-2 border-primary rounded-lg animate-pulse"></div>
                     </div>
 
                     <div className="text-center space-y-2">
-                      <Badge variant="secondary" className="bg-primary/20 text-primary">
+                      <Badge
+                        variant="secondary"
+                        className="bg-primary/20 text-primary"
+                      >
                         <Smartphone className="h-3 w-3 mr-1" />
                         Mobile Required
                       </Badge>
@@ -129,15 +132,19 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
 
                     {/* Fallback URL */}
                     <div className="w-full p-4 bg-muted/20 rounded-lg">
-                      <p className="text-xs text-muted-foreground mb-2">Manual Link:</p>
-                      <code className="text-xs text-primary break-all">
-                        {temples[selectedTemple].arUrl}
-                      </code>
+                      <p className="text-xs text-muted-foreground mb-2">
+                        Manual Link:
+                      </p>
+                      <a href={temples[selectedTemple].arUrl} target="_blank">
+                        <code className="text-xs text-primary break-all">
+                          {temples[selectedTemple].arUrl}
+                        </code>
+                      </a>
                     </div>
 
                     <div className="grid grid-cols-1 gap-3">
                       {temples[selectedTemple].history && (
-                        <Button 
+                        <Button
                           variant="default"
                           className="w-full bg-gradient-to-r from-accent to-secondary hover:from-accent/80 hover:to-secondary/80"
                           onClick={() => setHistoryModalOpen(true)}
@@ -147,7 +154,7 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
                         </Button>
                       )}
 
-                      <Button 
+                      <Button
                         onClick={() => setSelectedTemple(null)}
                         variant="outline"
                         className="w-full"
@@ -169,7 +176,9 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
                     </h2>
                     <div className="flex items-center justify-center lg:justify-start space-x-2 mb-4">
                       <MapPin className="h-5 w-5 text-primary" />
-                      <span className="text-muted-foreground">{temples[selectedTemple].location}</span>
+                      <span className="text-muted-foreground">
+                        {temples[selectedTemple].location}
+                      </span>
                     </div>
                     <p className="text-lg text-muted-foreground mb-6">
                       {temples[selectedTemple].description}
@@ -183,16 +192,21 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
                           <div className="text-2xl font-bold text-accent mb-2">
                             {temples[selectedTemple].elevation}
                           </div>
-                          <div className="text-sm text-muted-foreground">Elevation</div>
+                          <div className="text-sm text-muted-foreground">
+                            Elevation
+                          </div>
                         </div>
                       </Card>
                     )}
                     <Card className="glass p-4">
                       <div className="text-center">
                         <div className="text-2xl font-bold text-secondary mb-2">
-                          {temples[selectedTemple].built || temples[selectedTemple].year}
+                          {temples[selectedTemple].built ||
+                            temples[selectedTemple].year}
                         </div>
-                        <div className="text-sm text-muted-foreground">Built</div>
+                        <div className="text-sm text-muted-foreground">
+                          Built
+                        </div>
                       </div>
                     </Card>
                   </div>
@@ -229,62 +243,89 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
                         <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                           <Zap className="h-8 w-8 text-white" />
                         </div>
-                        <h2 className="gradient-text mb-2">How to Experience AR</h2>
+                        <h2 className="gradient-text mb-2">
+                          How to Experience AR
+                        </h2>
                         <p className="text-muted-foreground text-sm">
-                          Follow these simple steps to explore heritage sites in augmented reality
+                          Follow these simple steps to explore heritage sites in
+                          augmented reality
                         </p>
                       </div>
-                      
+
                       <div className="space-y-4">
                         {[
                           {
                             step: "1",
                             title: "Select Heritage Site",
-                            description: "Choose a heritage site from the list to generate its QR code",
+                            description:
+                              "Choose a heritage site from the list to generate its QR code",
                             icon: QrCode,
-                            color: "primary"
+                            color: "primary",
                           },
                           {
-                            step: "2", 
+                            step: "2",
                             title: "Scan QR Code",
-                            description: "Use your phone's camera to scan the site-specific QR code",
+                            description:
+                              "Use your phone's camera to scan the site-specific QR code",
                             icon: Eye,
-                            color: "secondary"
+                            color: "secondary",
                           },
                           {
                             step: "3",
                             title: "Explore in AR",
-                            description: "Experience the heritage site in immersive augmented reality",
+                            description:
+                              "Experience the heritage site in immersive augmented reality",
                             icon: Sparkles,
-                            color: "accent"
-                          }
+                            color: "accent",
+                          },
                         ].map((item, index) => {
                           const IconComponent = item.icon;
                           return (
-                            <div key={index} className="flex items-start space-x-4 p-4 rounded-lg bg-muted/10 border border-border/50 hover:border-primary/30 transition-all duration-300">
+                            <div
+                              key={index}
+                              className="flex items-start space-x-4 p-4 rounded-lg bg-muted/10 border border-border/50 hover:border-primary/30 transition-all duration-300"
+                            >
                               <div className="flex-shrink-0">
-                                <div className={`w-12 h-12 bg-gradient-to-br ${
-                                  item.color === 'primary' ? 'from-primary/20 to-primary/10' :
-                                  item.color === 'secondary' ? 'from-secondary/20 to-secondary/10' :
-                                  'from-accent/20 to-accent/10'
-                                } rounded-full flex items-center justify-center border border-border/30`}>
-                                  <span className={`${
-                                    item.color === 'primary' ? 'text-primary' :
-                                    item.color === 'secondary' ? 'text-secondary' :
-                                    'text-accent'
-                                  } font-semibold text-lg`}>{item.step}</span>
+                                <div
+                                  className={`w-12 h-12 bg-gradient-to-br ${
+                                    item.color === "primary"
+                                      ? "from-primary/20 to-primary/10"
+                                      : item.color === "secondary"
+                                      ? "from-secondary/20 to-secondary/10"
+                                      : "from-accent/20 to-accent/10"
+                                  } rounded-full flex items-center justify-center border border-border/30`}
+                                >
+                                  <span
+                                    className={`${
+                                      item.color === "primary"
+                                        ? "text-primary"
+                                        : item.color === "secondary"
+                                        ? "text-secondary"
+                                        : "text-accent"
+                                    } font-semibold text-lg`}
+                                  >
+                                    {item.step}
+                                  </span>
                                 </div>
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center space-x-2 mb-2">
-                                  <IconComponent className={`h-4 w-4 ${
-                                    item.color === 'primary' ? 'text-primary' :
-                                    item.color === 'secondary' ? 'text-secondary' :
-                                    'text-accent'
-                                  }`} />
-                                  <h4 className="font-medium text-sm">{item.title}</h4>
+                                  <IconComponent
+                                    className={`h-4 w-4 ${
+                                      item.color === "primary"
+                                        ? "text-primary"
+                                        : item.color === "secondary"
+                                        ? "text-secondary"
+                                        : "text-accent"
+                                    }`}
+                                  />
+                                  <h4 className="font-medium text-sm">
+                                    {item.title}
+                                  </h4>
                                 </div>
-                                <p className="text-muted-foreground text-xs leading-relaxed">{item.description}</p>
+                                <p className="text-muted-foreground text-xs leading-relaxed">
+                                  {item.description}
+                                </p>
                               </div>
                             </div>
                           );
@@ -325,49 +366,77 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
                     <Sparkles className="h-6 w-6 text-accent" />
                     <span>Select Heritage Site for AR</span>
                   </h3>
-                  <Badge variant="secondary" className="bg-primary/20 text-primary">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary"
+                  >
                     {temples.length} Sites Available
                   </Badge>
                 </div>
-                
+
                 <div className="max-h-[600px] overflow-y-auto pr-4 space-y-4 site-list-scroll p-2">
                   {temples.map((temple, index) => (
-                    <Card key={temple.id} className="site-selection-card glass hover:border-primary/40 transition-all duration-300 cursor-pointer group hover:scale-[1.02] hover:shadow-xl" onClick={() => setSelectedTemple(index)}>
+                    <Card
+                      key={temple.id}
+                      className="site-selection-card glass hover:border-primary/40 transition-all duration-300 cursor-pointer group hover:scale-[1.02] hover:shadow-xl"
+                      onClick={() => setSelectedTemple(index)}
+                    >
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between mb-3">
-                              <h4 className="font-medium group-hover:text-primary transition-colors text-lg pr-4">{temple.title}</h4>
-                              <Badge variant="secondary" className="bg-accent/20 text-accent whitespace-nowrap">
+                              <h4 className="font-medium group-hover:text-primary transition-colors text-lg pr-4">
+                                {temple.title}
+                              </h4>
+                              <Badge
+                                variant="secondary"
+                                className="bg-accent/20 text-accent whitespace-nowrap"
+                              >
                                 AR Ready
                               </Badge>
                             </div>
                             <div className="flex items-center space-x-1 mb-3">
                               <MapPin className="h-4 w-4 text-muted-foreground" />
-                              <p className="text-sm text-muted-foreground">{temple.location}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {temple.location}
+                              </p>
                             </div>
-                            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{temple.description}</p>
+                            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                              {temple.description}
+                            </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                               {temple.elevation && (
-                                <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/30">
+                                <Badge
+                                  variant="outline"
+                                  className="text-xs bg-primary/10 text-primary border-primary/30"
+                                >
                                   {temple.elevation}
                                 </Badge>
                               )}
-                              <Badge variant="outline" className="text-xs bg-secondary/10 text-secondary border-secondary/30">
+                              <Badge
+                                variant="outline"
+                                className="text-xs bg-secondary/10 text-secondary border-secondary/30"
+                              >
                                 Built: {temple.built || temple.year}
                               </Badge>
                               {temple.isUNESCO && (
-                                <Badge variant="outline" className="text-xs bg-blue-500/20 text-blue-300 border-blue-400/30">
+                                <Badge
+                                  variant="outline"
+                                  className="text-xs bg-blue-500/20 text-blue-300 border-blue-400/30"
+                                >
                                   <Crown className="h-3 w-3 mr-1" />
                                   UNESCO
                                 </Badge>
                               )}
-                              <Badge variant="outline" className="text-xs bg-accent/10 text-accent border-accent/30">
+                              <Badge
+                                variant="outline"
+                                className="text-xs bg-accent/10 text-accent border-accent/30"
+                              >
                                 {temple.category}
                               </Badge>
                             </div>
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               className="group-hover:scale-105 transition-transform bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80"
                               onClick={() => setSelectedTemple(index)}
                             >
@@ -407,13 +476,13 @@ export function ARView({ onBack, selectedSiteId }: ARViewProps) {
           </div>
         </div>
       </div>
-      
+
       {/* History Modal */}
       {selectedTemple !== null && (
-        <HistoryModal 
-          isOpen={historyModalOpen} 
-          onClose={() => setHistoryModalOpen(false)} 
-          site={temples[selectedTemple]} 
+        <HistoryModal
+          isOpen={historyModalOpen}
+          onClose={() => setHistoryModalOpen(false)}
+          site={temples[selectedTemple]}
         />
       )}
     </section>
