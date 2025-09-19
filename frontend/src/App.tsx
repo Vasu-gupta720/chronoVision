@@ -23,7 +23,7 @@ export default function App() {
       <ScrollToTop />
       <div className="min-h-screen" style={{ background: "var(--background)" }}>
         <Header />
-        <main className="pt-20">
+        <main className="pt-20 bg-card">
           {" "}
           {/* Top padding to account for fixed header */}
           <Routes>
