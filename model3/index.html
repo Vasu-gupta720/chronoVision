@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebAR — Itihaas360</title>
+
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0f2c, #111936, #1b233d);
+      color: #e0e0f0;
+    }
+
+    header {
+      padding: 16px;
+      background: rgba(20, 25, 50, 0.9);
+      backdrop-filter: blur(12px);
+      color: #6df7c1;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    model-viewer {
+      width: 100%;
+      max-width: 900px;
+      height: 70vh;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Futuristic AR Button */
+    #custom-ar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #ff3c7d, #00f5a0, #4facfe);
+      background-size: 300% auto;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 40px;
+      padding: 14px 32px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+      animation: gradientShift 4s infinite alternate;
+      z-index: 5;
+    }
+
+    #custom-ar:hover {
+      transform: translateX(-50%) scale(1.07);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: left; }
+      100% { background-position: right; }
+    }
+
+    /* Loading Spinner */
+    #loading-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top: 4px solid #6df7c1;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      z-index: 10;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>🌌 WebAR — Itihaas360 Experience</header>
+
+  <main>
+    <!-- Spinner while loading -->
+    <div id="loading-spinner"></div>
+
+    <!-- Android/Desktop (GLB) -->
+    <model-viewer id="mv-android"
+      src="aajanta_caves.glb"
+      alt="3D model"
+      ar
+      ar-modes="webxr scene-viewer"
+      camera-controls
+      auto-rotate
+      auto-rotate-delay="2000"
+      rotation-per-second="30deg"
+      exposure="1"
+      shadow-intensity="0.7"
+      loading="eager">
+      
+      <button slot="ar-button" id="custom-ar">View in Your Space</button>
+    </model-viewer>
+
+    <!-- iOS (USDZ) -->
+    <model-viewer id="mv-ios"
+      src="Untitled.usdz"
+      alt="3D model"
+      ar
+      ar-modes="quick-look"
+      camera-controls
+      auto-rotate
+      auto-rotate-delay="2000"
+      rotation-per-second="30deg"
+      exposure="1"
+      shadow-intensity="0.7"
+      loading="eager"
+      style="display:none">
+      
+      <button slot="ar-button" id="custom-ar">View in Your Space</button>
+    </model-viewer>
+  </main>
+
+  <script>
+    const spinner = document.getElementById('loading-spinner');
+    const androidMV = document.getElementById('mv-android');
+    const iosMV = document.getElementById('mv-ios');
+
+    // Detect iOS
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isIOS) {
+      androidMV.style.display = "none";
+      iosMV.style.display = "block";
+      iosMV.addEventListener('load', () => { spinner.style.display = 'none'; });
+    } else {
+      iosMV.style.display = "none";
+      androidMV.style.display = "block";
+      androidMV.addEventListener('load', () => { spinner.style.display = 'none'; });
+    }
+  </script>
+</body>
+</html>
