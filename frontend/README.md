@@ -1,9 +1,6 @@
 
-  # Heritage Site Exploration Website
 
-  This is a code bundle for Heritage Site Exploration Website. The original project is available at https://www.figma.com/design/LJfoYgsqzwYWf1TZNPQBn0/Heritage-Site-Exploration-Website.
-
-  ## Running the code
+  # Running the code
 
   Run `npm install` `npm install firebase` and  to install the dependencies.
 
