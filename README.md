@@ -1,9 +1,49 @@
 # PS Overview
 Create an augmented reality (AR) platform to digitize and preserve India's cultural heritage sites, allowing users to experience virtual tours with historical narratives. The platform should support low-bandwidth access for rural users
 
+### Tasks Completed ✅
+
+Designed & optimized 3D AR models using Blender.
+
+Built responsive website with Next.js & Tailwind CSS.
+
+Integrated Three.js for interactive AR experiences.
+
+Added quizzes, history, and images for learning & engagement.
+
+Configured Firebase for authentication and database.
+
+Deployed on Netlify with GitHub CI/CD.
+
+### Tech Stack 🛠
+
+Frontend: Next.js, Tailwind CSS, Three.js
+
+Backend: Node.js
+
+Database & Auth: Firebase
+
+3D Modeling: Blender
+
+Version Control: GitHub
+
+Deployment: Netlify
+
+### Key Features ✨
+
+Immersive AR models of cultural & heritage sites.
+
+Interactive quizzes & galleries for better learning.
+
+Responsive design (mobile & desktop friendly).
+
+Real-time updates via Firebase.
+
+Easy deployment and scalability.
+
 ## Team Details
 
-**Team Name:** CronoVision
+**Team Name:** ChronoVision
 
 **Team Leader:** [@Vasu-gupta720](https://github.com/Vasu-gupta720)
 
@@ -19,7 +59,7 @@ Create an augmented reality (AR) platform to digitize and preserve India's cultu
 ## Project Links
 
 - **SIH Presentation:** [Final SIH Presentation](https://www.canva.com/design/DAGy4ihxpyA/InjduCGbrgmKbkHv0O0lTw/edit?utm_content=DAGy4ihxpyA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-- **Video Demonstration:** [Watch Video](https://youtu.be/T99b6BE7Kbc)
+- **Video Demonstration:** [Watch Video](https://youtu.be/N7MFMPaPfOk?si=Q01umNOfex13SXar)
 - **Live Deployment:** [View Deployment](https://chrono-vision.vercel.app/)
 - **Source Code:** [GitHub Repository](https://github.com/Vasu-gupta720/chronoVision)
 - **Additional Resources:** [Other Relevant Links](ANY OTHER RELEVANT LINKS)
