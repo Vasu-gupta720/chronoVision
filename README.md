@@ -12,7 +12,7 @@ Create an augmented reality (AR) platform to digitize and preserve India's cultu
 - **MEMBER_1** - 2024UCB6640 - [@Vasu-gupta720](https://github.com/Vasu-gupta720)
 - **MEMBER_2** - 2024UCI8038 - [@samarth-14](https://github.com/samarth-14)
 - **MEMBER_3** - 2024UCI8027 - [@grim1093](https://github.com/grim1093)
-- **MEMBER_4** - ROLL_NUMBER - [@USERNAME](https://github.com/USERNAME)
+- **MEMBER_4** - 2024UCI8070 - [@Root3141](https://github.com/URoot3141)
 - **MEMBER_5** - 2024UCI8063 - [@ayush00soni](https://github.com/ayush00soni)
 - **MEMBER_6** - 2024UCI8005 - [@hansikasp08](https://github.com/hansikasp08)
 
