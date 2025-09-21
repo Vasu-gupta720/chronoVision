@@ -1,7 +1,7 @@
 # PS Overview
 Create an augmented reality (AR) platform to digitize and preserve India's cultural heritage sites, allowing users to experience virtual tours with historical narratives. The platform should support low-bandwidth access for rural users
 
-### Tasks Completed ✅
+## Tasks Completed ✅
 
 Designed & optimized 3D AR models using Blender.
 
@@ -15,7 +15,7 @@ Configured Firebase for database.
 
 Deployed on Vercel with GitHub CI/CD.
 
-### Tech Stack 🛠
+## Tech Stack 🛠
 
 Frontend: React, Tailwind CSS, Three.js, TypeScript
 
@@ -29,7 +29,7 @@ Version Control: GitHub
 
 Deployment: Vercel
 
-### Key Features ✨
+## Key Features ✨
 
 Immersive AR models of cultural & heritage sites.
 
