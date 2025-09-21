@@ -62,4 +62,3 @@ Easy deployment and scalability.
 - **Video Demonstration:** [Watch Video](https://youtu.be/XD7hAOm2dRY?si=wtC3UltzCrG4nmYL)
 - **Live Deployment:** [View Deployment](https://chrono-vision.vercel.app/)
 - **Source Code:** [GitHub Repository](https://github.com/Vasu-gupta720/chronoVision)
-- **Additional Resources:** [Other Relevant Links](ANY OTHER RELEVANT LINKS)
