@@ -18,8 +18,8 @@ Create an augmented reality (AR) platform to digitize and preserve India's cultu
 
 ## Project Links
 
-- **SIH Presentation:** [Final SIH Presentation](URL TO PPT UPLOADED TO GITHUB)
-- **Video Demonstration:** [Watch Video](UNLISTED YOUTUBE LINK)
-- **Live Deployment:** [View Deployment](DEPLOYED LINK IF ANY)
-- **Source Code:** [GitHub Repository](GITHUB LINK TO THE REPO)
+- **SIH Presentation:** [Final SIH Presentation](https://www.canva.com/design/DAGy4ihxpyA/InjduCGbrgmKbkHv0O0lTw/edit?utm_content=DAGy4ihxpyA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- **Video Demonstration:** [Watch Video](https://youtu.be/T99b6BE7Kbc)
+- **Live Deployment:** [View Deployment](https://chrono-vision.vercel.app/)
+- **Source Code:** [GitHub Repository](https://github.com/Vasu-gupta720/chronoVision)
 - **Additional Resources:** [Other Relevant Links](ANY OTHER RELEVANT LINKS)
