@@ -5,29 +5,29 @@ Create an augmented reality (AR) platform to digitize and preserve India's cultu
 
 Designed & optimized 3D AR models using Blender.
 
-Built responsive website with Next.js & Tailwind CSS.
+Built responsive website with React & Tailwind CSS.
 
 Integrated Three.js for interactive AR experiences.
 
 Added quizzes, history, and images for learning & engagement.
 
-Configured Firebase for authentication and database.
+Configured Firebase for database.
 
-Deployed on Netlify with GitHub CI/CD.
+Deployed on Vercel with GitHub CI/CD.
 
 ### Tech Stack 🛠
 
-Frontend: Next.js, Tailwind CSS, Three.js
+Frontend: React, Tailwind CSS, Three.js, TypeScript
 
 Backend: Node.js
 
-Database & Auth: Firebase
+Database: Firebase
 
 3D Modeling: Blender
 
 Version Control: GitHub
 
-Deployment: Netlify
+Deployment: Vercel
 
 ### Key Features ✨
 
@@ -59,7 +59,7 @@ Easy deployment and scalability.
 ## Project Links
 
 - **SIH Presentation:** [Final SIH Presentation](https://www.canva.com/design/DAGy4ihxpyA/InjduCGbrgmKbkHv0O0lTw/edit?utm_content=DAGy4ihxpyA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-- **Video Demonstration:** [Watch Video](https://youtu.be/N7MFMPaPfOk?si=Q01umNOfex13SXar)
+- **Video Demonstration:** [Watch Video](https://youtu.be/XD7hAOm2dRY?si=wtC3UltzCrG4nmYL)
 - **Live Deployment:** [View Deployment](https://chrono-vision.vercel.app/)
 - **Source Code:** [GitHub Repository](https://github.com/Vasu-gupta720/chronoVision)
 - **Additional Resources:** [Other Relevant Links](ANY OTHER RELEVANT LINKS)
